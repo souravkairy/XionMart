@@ -1,13 +1,14 @@
 import React from 'react'
-import HomePage from '../pages/layout1/HomePage'
 import {
     BrowserRouter as Router,
     Routes,
     Route,
     Link
 } from "react-router-dom";
-import ProductDetailsPage from '../pages/layout1/ProductDetailsPage';
-import CartPage from '../pages/layout1/CartPage';
+import ProductDetailsPage from '../pages/ProductDetailsPage';
+import CartPage from '../pages/CartPage';
+import HomePage from '../pages/HomePage';
+
 
 const Navigation = () => {
     return (

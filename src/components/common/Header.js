@@ -81,17 +81,19 @@ function classNames(...classes) {
 }
 const Header = () => {
     return (
-            <Popover className="relative bg-white mb-2 rounded-md">
+            <Popover className=" bg-white mb-2 rounded-md sticky top-0 z-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                    <div className="flex justify-between items-center py-6 md:justify-start md:space-x-10">
-                        <div className="flex justify-start lg:w-0 lg:flex-1">
+                    <div className="flex justify-between items-center py-4 md:justify-start md:space-x-10">
+                        <div className="flex justify-start mr-4">
                             <Link to="/">
                                 <span className="sr-only">Workflow</span>
-                                <img
+                                {/* <img
                                     className="h-8 w-auto sm:h-10"
                                     src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
                                     alt=""
-                                />
+                                /> */}
+                                <span className="font-bold">MalDAL</span>
+                                
                             </Link>
                         </div>
                         <div className="-mr-2 -my-2 md:hidden">
@@ -253,7 +255,7 @@ const Header = () => {
                             </a>
                             <a
                                 href="#"
-                                className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+                                className="ml-8 px-4 py-1.5 rounded-md shadow-sm text-base font-medium text-white bg-gray-900 hover:bg-black"
                             >
                                 Sign up
                             </a>
