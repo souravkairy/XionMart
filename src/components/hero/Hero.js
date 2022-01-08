@@ -4,7 +4,7 @@ import image1 from '../../assets/images/ss.png'
 const Hero = () => {
     return (
         <>
-            <div className="flex flex-wrap bg-white px-4 py-4 rounded-md mb-1">
+            <div className="flex flex-wrap bg-white px-4 py-4 ">
                 <div className="w-full md:w-1/3 hidden md:block px-2">
                     <h2 className="mx-2 py-2 border rounded-md text-center font-semibold shadow-sm">Category</h2>
                     <div className="flex justify-between mx-2 py-2 px-2 border-b">

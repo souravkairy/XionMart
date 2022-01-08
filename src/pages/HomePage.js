@@ -10,21 +10,11 @@ const HomePage = () => {
     return (
         <MainLayout>
             <Hero />
-            <div className="my-4">
-                <CategorySection />
-            </div>
-            <div className="my-4">
-                <ProductCard />
-            </div>
-            <div className="my-4">
-                <HeroTwo />
-            </div>
-            <div className="my-4">
-                <ProductCard />
-            </div>
-            <div className="my-4">
-                <HeroThree />
-            </div>
+            <CategorySection />
+            <ProductCard />
+            <HeroTwo />
+            <ProductCard />
+            <HeroThree />
         </MainLayout>
     )
 }

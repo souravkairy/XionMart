@@ -16,8 +16,8 @@ const Navigation = () => {
             <Router>
                 <Routes>
                     <Route exact  path="/"  element={<HomePage />} />
-                    <Route exact  path="/productDetails" element={<ProductDetailsPage />} />
-                    <Route exact  path="/cartPage" element={<CartPage />} />
+                    <Route exact  path="/product-details" element={<ProductDetailsPage />} />
+                    <Route exact  path="/cart-page" element={<CartPage />} />
                 </Routes>
             </Router>
         </>

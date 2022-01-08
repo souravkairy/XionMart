@@ -4,8 +4,8 @@ import Header from '../components/common/Header'
 
 const MainLayout = ({ children }) => {
     return (
-        <div className="bg-gray-100 w-full py-2">
-            <div className="container mx-auto px-4">
+        <div className="w-full">
+            <div className="container mx-auto bg-white">
                 <Header />
                 {children}
                 <Footer />
