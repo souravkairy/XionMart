@@ -1,16 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import MainLayout from '../layouts/MainLayout'
 import { useForm } from "react-hook-form";
 const UserAccountsPage = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { register: register1, handleSubmit: handleSubmit1, reset: reset1, formState: { errors: errors1 } } = useForm();
     const userAuth = (data) => {
         console.log(data);
         reset();
     };
     const newUser = (data) => {
         console.log(data);
-        reset();
+        reset1();
     };
+    const [emailField, setEmaiField] = useState(false)
     return (
         <MainLayout>
             <div className="flex flex-wrap justify-between py-12 px-4 sm:px-6 lg:px-8">
@@ -22,31 +24,47 @@ const UserAccountsPage = () => {
                     <form className="mt-8 space-y-6" onSubmit={handleSubmit(userAuth)}>
                         <input type="hidden" name="remember" defaultValue="true" />
                         <div className="rounded-md -space-y-px">
-                            <div>
-                                <label htmlFor="email-address" className="sr-only">
-                                    Email address
-                                </label>
-                                <input
-                                    id="email-address"
-                                    type="email"
-                                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                    placeholder="Email address"
-                                    {...register("email", { required: true })}
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="password" className="sr-only">
-                                    Password
-                                </label>
-                                <input
-                                    id="password"
-                                    type="password"
-                                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                    placeholder="Password"
-                                    {...register("password", { required: true })}
-                                />
-                                {errors.password && <span className="text-sm text-red-600 font-light">Please fill the field properly</span>}
-                            </div>
+                            {emailField === true ?
+                                <div>
+                                    <label htmlFor="email-address" className="sr-only">
+                                        Email address
+                                    </label>
+                                    <input
+                                        id="email-address"
+                                        type="email"
+                                        className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                        placeholder="Email address"
+                                        {...register("email", { required: true })}
+                                    />
+                                </div>
+                                :
+                                <>
+                                    <div>
+                                        <label htmlFor="email-address" className="sr-only">
+                                            Email address
+                                        </label>
+                                        <input
+                                            id="email-address"
+                                            type="email"
+                                            className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                            placeholder="Email address"
+                                            {...register("email", { required: true })}
+                                        />
+                                    </div>
+                                    <div>
+                                        <label htmlFor="password" className="sr-only">
+                                            Password
+                                        </label>
+                                        <input
+                                            id="password"
+                                            type="password"
+                                            className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                            placeholder="Password"
+                                            {...register("password", { required: true })}
+                                        />
+                                    </div></>
+
+                            }
                         </div>
 
                         <div className="flex items-center justify-between">
@@ -61,12 +79,17 @@ const UserAccountsPage = () => {
                                     Remember me
                                 </label>
                             </div>
+                            {
+                                emailField === false ?
+                                    <div className="text-sm">
+                                        <button onClick={() => { setEmaiField(true) }} className="font-medium text-indigo-600 hover:text-indigo-500">
+                                            Forgot your password?
+                                        </button>
+                                    </div>
+                                    :
+                                    null
+                            }
 
-                            <div className="text-sm">
-                                <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                                    Forgot your password?
-                                </a>
-                            </div>
                         </div>
 
                         <div className="flex flex-wrap space-x-2">
@@ -89,7 +112,7 @@ const UserAccountsPage = () => {
                         <h2 className="mt-6 text-3xl font-semibold text-gray-900">I do not have a account</h2>
                         <p>Sign up with your email and password</p>
                     </div>
-                    <form className="mt-8 space-y-6" onSubmit={handleSubmit(newUser)}>
+                    <form className="mt-8 space-y-6" onSubmit={handleSubmit1(newUser)}>
                         <input type="hidden" name="remember" defaultValue="true" />
                         <div className="rounded-md shadow-sm -space-y-px">
                             <div>
@@ -99,10 +122,9 @@ const UserAccountsPage = () => {
                                 <input
                                     id="name"
                                     type="text"
-                                    required
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="Name"
-                                    {...register("name", { required: true })}
+                                    {...register1("name", { required: true })}
                                 />
                             </div>
                             <div>
@@ -112,10 +134,9 @@ const UserAccountsPage = () => {
                                 <input
                                     id="mobile-number"
                                     type="text"
-                                    required
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="Mobile Number"
-                                    {...register("mobile_number")}
+                                    {...register1("mobile_number")}
                                 />
                             </div>
                             <div>
@@ -127,7 +148,7 @@ const UserAccountsPage = () => {
                                     type="email"
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="Email address"
-                                    {...register("email", { required: true })}
+                                    {...register1("email", { required: true })}
                                 />
                             </div>
                             <div>
@@ -136,15 +157,12 @@ const UserAccountsPage = () => {
                                 </label>
                                 <input
                                     id="password"
-                                    name="password"
                                     type="password"
-                                    required
                                     className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="Password"
-                                    {...register("password", { required: true })}
+                                    {...register1("password", { required: true })}
                                 />
                             </div>
-                            {errors.password && <span className="text-sm text-red-600 font-light">Please fill the field properly</span>}
                         </div>
                         <div>
                             <button
