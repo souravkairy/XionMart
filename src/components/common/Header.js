@@ -2,6 +2,7 @@ import { Fragment, useState } from 'react'
 import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
 import { MenuIcon, SearchIcon, ShoppingBagIcon, XIcon } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
+import { auth } from '../../firebase/firebase.utils'
 const navigation = {
   categories: [
     {
@@ -121,7 +122,7 @@ const navigation = {
   ],
   pages: [
     { name: 'Company', href: '#' },
-    { name: 'Stores', href: '#' },
+    { name: 'Stores', href: '/store' },
   ],
 }
 
@@ -129,7 +130,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-const Header = () => {
+const Header = ({ authUser }) => {
   const [open, setOpen] = useState(false)
   return (
     <div className="bg-white">
@@ -235,24 +236,36 @@ const Header = () => {
               <div className="border-t border-gray-200 py-6 px-4 space-y-6">
                 {navigation.pages.map((page) => (
                   <div key={page.name} className="flow-root">
-                    <a href={page.href} className="-m-2 p-2 block font-medium text-gray-900">
+                    <Link to={page.href} className="-m-2 p-2 block font-medium text-gray-900">
                       {page.name}
-                    </a>
+                    </Link>
                   </div>
                 ))}
               </div>
 
               <div className="border-t border-gray-200 py-6 px-4 space-y-6">
-                <div className="flow-root">
-                  <Link to="user-account" className="-m-2 p-2 block font-medium text-gray-900">
-                    Sign in
-                  </Link>
-                </div>
-                <div className="flow-root">
-                  <Link to="user-account" className="-m-2 p-2 block font-medium text-gray-900">
-                    Create account
-                  </Link>
-                </div>
+                {
+                  authUser ?
+                    <div className="flow-root">
+                      <button onClick={() => auth.signOut()} className="-m-2 p-2 block font-medium text-gray-900">
+                        Sign in
+                      </button>
+                    </div>
+                    :
+                    <>
+                      <div className="flow-root">
+                        <Link to="/user-account" className="-m-2 p-2 block font-medium text-gray-900">
+                          Sign in
+                        </Link>
+                      </div>
+                      <div className="flow-root">
+                        <Link to="/user-account" className="-m-2 p-2 block font-medium text-gray-900">
+                          Create account
+                        </Link>
+                      </div>
+                    </>
+                }
+
               </div>
 
               <div className="border-t border-gray-200 py-6 px-4">
@@ -390,26 +403,36 @@ const Header = () => {
                   ))}
 
                   {navigation.pages.map((page) => (
-                    <a
+                    <Link
                       key={page.name}
-                      href={page.href}
+                      to={page.href}
                       className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
                     >
                       {page.name}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </Popover.Group>
 
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <Link to="user-account" className="text-sm font-medium text-gray-700 hover:text-gray-800">
-                    Sign in
-                  </Link>
-                  <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                  <Link to="user-account" className="text-sm font-medium text-gray-700 hover:text-gray-800">
-                    Create account
-                  </Link>
+                  {
+                    authUser ?
+                      <button onClick={() => auth.signOut()} className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                        Logout
+                      </button>
+                      :
+                      <>
+                        <Link to="/user-account" className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                          Sign in
+                        </Link>
+                        <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
+                        <Link to="/user-account" className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                          Create account
+                        </Link>
+                      </>
+                  }
+
                 </div>
 
                 <div className="hidden lg:ml-8 lg:flex">

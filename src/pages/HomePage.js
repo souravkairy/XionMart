@@ -1,6 +1,6 @@
 import React from 'react'
 import ProductCard from '../components/card/ProductCard'
-import CategorySection from '../components/categorySection/CategorySection'
+import CategorySection from '../components/category-section/CategorySection'
 import Hero from '../components/hero/Hero'
 import HeroThree from '../components/hero/HeroThree'
 import HeroTwo from '../components/hero/HeroTwo'

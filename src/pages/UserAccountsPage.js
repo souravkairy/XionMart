@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import MainLayout from '../layouts/MainLayout'
 import { useForm } from "react-hook-form";
+import { signInWithGoogle } from '../firebase/firebase.utils'
 const UserAccountsPage = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const { register: register1, handleSubmit: handleSubmit1, reset: reset1, formState: { errors: errors1 } } = useForm();
@@ -15,7 +16,7 @@ const UserAccountsPage = () => {
     const [emailField, setEmaiField] = useState(false)
     return (
         <MainLayout>
-            <div className="flex flex-wrap justify-between py-12 px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-wrap justify-between content-center py-12 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-md w-full space-y-6">
                     <div>
                         <h2 className="mt-6 text-3xl font-semibold text-gray-900">I already have an account</h2>
@@ -32,7 +33,7 @@ const UserAccountsPage = () => {
                                     <input
                                         id="email-address"
                                         type="email"
-                                        className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                        className="appearance-none w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                         placeholder="Email address"
                                         {...register("email", { required: true })}
                                     />
@@ -46,7 +47,7 @@ const UserAccountsPage = () => {
                                         <input
                                             id="email-address"
                                             type="email"
-                                            className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                            className="appearance-none rounded-none w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                             placeholder="Email address"
                                             {...register("email", { required: true })}
                                         />
@@ -58,7 +59,7 @@ const UserAccountsPage = () => {
                                         <input
                                             id="password"
                                             type="password"
-                                            className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                            className="appearance-none rounded-none  w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                             placeholder="Password"
                                             {...register("password", { required: true })}
                                         />
@@ -100,6 +101,7 @@ const UserAccountsPage = () => {
                                 Sign in
                             </button>
                             <button
+                                onClick={signInWithGoogle}
                                 className="flex-1 justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-indigo-700 "
                             >
                                 Sign in with google
@@ -107,6 +109,7 @@ const UserAccountsPage = () => {
                         </div>
                     </form>
                 </div>
+                <span className="w-px bg-gray-200 hidden md:block my-5" aria-hidden="true" />
                 <div className="max-w-md w-full space-y-6">
                     <div>
                         <h2 className="mt-6 text-3xl font-semibold text-gray-900">I do not have a account</h2>
@@ -122,7 +125,7 @@ const UserAccountsPage = () => {
                                 <input
                                     id="name"
                                     type="text"
-                                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                    className="appearance-none rounded-none w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="Name"
                                     {...register1("name", { required: true })}
                                 />
@@ -134,7 +137,7 @@ const UserAccountsPage = () => {
                                 <input
                                     id="mobile-number"
                                     type="text"
-                                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                    className="appearance-none rounded-none w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="Mobile Number"
                                     {...register1("mobile_number")}
                                 />
@@ -146,7 +149,7 @@ const UserAccountsPage = () => {
                                 <input
                                     id="email-address"
                                     type="email"
-                                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                    className="appearance-none rounded-none w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="Email address"
                                     {...register1("email", { required: true })}
                                 />
@@ -158,7 +161,7 @@ const UserAccountsPage = () => {
                                 <input
                                     id="password"
                                     type="password"
-                                    className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                    className="appearance-none rounded-none w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                                     placeholder="Password"
                                     {...register1("password", { required: true })}
                                 />
@@ -167,7 +170,7 @@ const UserAccountsPage = () => {
                         <div>
                             <button
                                 type="submit"
-                                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                className="group w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                             >
                                 Sign up
                             </button>

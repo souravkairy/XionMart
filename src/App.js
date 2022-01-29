@@ -1,5 +1,6 @@
-import React from 'react'
-import Navigation from './route/Navigation'
+import React, { useState, useEffect } from 'react'
+import Navigation from './route/Route'
+import { auth } from './firebase/firebase.utils'
 
 const App = () => {
   return (
