@@ -1,1 +1,1 @@
-# E-Commerce Solution | Created with create-react app & tailwind css
+# E-Commerce UI | Created with create-react app & tailwind css
